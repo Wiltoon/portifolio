@@ -35,6 +35,13 @@ export const HomeContact = styled.button`
     color: ${props => props.theme['secundary-blue-50']};
     border-radius: 15px;
     border-color: ${props => props.theme['secundary-blue-50']};
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover{
+        transition: background-color 0.4s;
+        background-color: ${props => props.theme['secundary-blue-50']};
+    }
 `;
 
 export const HomeFrase = styled.div`
