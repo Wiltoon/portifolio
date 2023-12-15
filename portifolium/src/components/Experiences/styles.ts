@@ -7,7 +7,6 @@ export const ExpContainer = styled.section`
     align-items: center; 
     justify-content: center;
     margin: 0 auto;
-    padding: 0 15rem;
     background-color: ${props => props.theme['background-blue']};
     border-top-style: solid;
     border-bottom-style: solid;
