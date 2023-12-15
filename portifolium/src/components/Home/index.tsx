@@ -46,7 +46,7 @@ export function Home() {
                     </HomeLink>
                 </HomeLinks>
             </HomeName>
-            <img src={memeBack} alt="" height={400} width={400}/>
+            <img src={memeBack} alt="" height={750} width={750}/>
             <HomeCV>
                 <HomeDowload>
                     Baixar CV 
