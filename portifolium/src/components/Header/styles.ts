@@ -10,7 +10,6 @@ export const HeaderContainer = styled.header`
 export const HeaderContent = styled.div`
     border-radius: 15;
     width: 100%;
-    max-width: 1120px;
     margin: 0 auto;
     padding: 0 1.5rem;
 
