@@ -3,6 +3,8 @@ import { Header } from "../../components/Header";
 import { Home } from "../../components/Home";
 import { Projects } from "../../components/Projects";
 import { About } from "../../components/About";
+import { Skills } from "../../components/Skills";
+import { Career } from "../../components/Career";
 
 export function Portifolio() {
     return (
@@ -12,6 +14,8 @@ export function Portifolio() {
             <About/>
             <Experiences/>
             <Projects/>
+            <Skills/>
+            <Career/>
         </div>
     )
 }

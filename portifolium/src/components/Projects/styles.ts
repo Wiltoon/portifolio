@@ -32,15 +32,17 @@ export const TitleWorks = styled.div`
 export const SelectWorks = styled.div`
     display: flex;
     gap: 20px;
-    `;
-
+`;
 export const Cards = styled.div`
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     gap: 40px;
     grid-template-columns: repeat(4, 3fr);
     justify-content: center;
+    align-items: center; // Add this line to center the cards vertically
     padding: 90px;
 `;
+
 export const ButtonWork = styled.button`
     width: 90px;
     display: flex;
