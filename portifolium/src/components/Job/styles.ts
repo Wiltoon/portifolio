@@ -12,6 +12,8 @@ export const JobContainer = styled.section`
 export const TitleJob = styled.div`
     display: flex;
     font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 300px;
     font-size: large;
     color: ${props => props.theme['white']};
