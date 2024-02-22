@@ -5,6 +5,7 @@ import { Projects } from "../../components/Projects";
 import { About } from "../../components/About";
 import { Skills } from "../../components/Skills";
 import { Career } from "../../components/Career";
+import { Contact } from "../../components/Contact";
 
 export function Portifolio() {
     return (
@@ -16,6 +17,9 @@ export function Portifolio() {
             <Projects/>
             <Skills/>
             <Career/>
+            <Contact/>
+            {/* <Recommendations/> */}
+            {/* <Footer/> */}
         </div>
     )
 }

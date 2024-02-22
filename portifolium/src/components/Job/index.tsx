@@ -33,7 +33,7 @@ export function Job(props: JobProps) {
     };
 
     return (
-        <JobContainer onClick={handleClick} className={expanded ? '' : 'collapsed'}>
+        <JobContainer onClick={handleClick} className={expanded ? 'expanded' : 'collapsed'}>
             <TitleJob>{props.title}</TitleJob>
             {(expanded) ? (
                 <>
