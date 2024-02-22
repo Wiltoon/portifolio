@@ -7,6 +7,11 @@ export const HeaderContainer = styled.header`
     border-radius: 16px;
 `;
 
+export const HeaderLink = styled.a`
+    color: inherit;
+    text-decoration: none;
+`;
+
 export const HeaderContent = styled.div`
     border-radius: 15;
     width: 100%;

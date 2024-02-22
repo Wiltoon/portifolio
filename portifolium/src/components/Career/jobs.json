@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Software Engineer Cloud at IBM",
+        "description": "Development of applications in Java and Python, using TDD, DDD and BDD practices. Use of CI/CD. Use of Clean Code practices: SOLID, KISS, DRY and YAGNI. Agile methodologies: SCRUM, KANBAN. Software maintenance, creation of new functionalities. Bank migration. AWS cost reduction. Creation of unit and integrated tests to test some functions with jUnit and Mockito, use of mutant tests to improve code quality.",
+        "startDate": "Nov · 2022",
+        "endDate": "At the moment",
+        "languages": ["Java", "Python", "Terraform", "CloudFormation", "Node", "Typescript"],
+        "databases": ["MySQL", "DynamoDB", "RDS", "PostgreSQL"],
+        "projects": ["Foreign Exchange", "Opening Accounts", "Process Automation"],
+        "learnings": ["AWS Cloud Practitioner", "Agility Learning", "AWS Solutions Architect", "TDD", "DDD", "BDD", "Time management", "Communication", "Grownth Mindset"]
+    },
+    {
+        "title": "Full-Stack Java at EVOP",
+        "description": "At EVOP, I joined as an Intern, where I was able to work on monolithic software in Java and Angular. In the beginning, the entire system was generated on a local server, however, due to hacker attacks we were forced to migrate to the cloud. And the AWS Cloud was chosen. As a challenge to be implemented, I was responsible for creating a microservice to act on the monolithic. The purpose of this microservice was to communicate with ASAAS, which was responsible for generating payment invoices for our users' customers. For the software to capture the status of the bills, I created a messaging system with Kafka and SQS, to update when there was a change in the bill's status (cancelled, paid, expired, among others...). Once hired, I was responsible for creating new features in the WEB part of the software, creating dashboards and report generators (PDF and EXCEL). My codes have always been well oriented to follow the clean code standard: SOLID, KISS, YAGNI, DRY.",
+        "startDate": "Jun · 2019",
+        "endDate": "Jul · 2021",
+        "languages": ["Java", "Angular", "Typescript", "Node", "Python"],
+        "databases": ["PostgreSQL", "MongoDB"],
+        "projects": ["ASAAS", "Report Generator (PDF, EXCEL)", "Dashboards", "Microservices", "Monolithic"],
+        "learnings": ["Applications with messaging", "Versioning with GitHub and GitLab", "Software maintenance", "Integration of microservices with monoliths"]
+    },
+    {
+        "title": "Full-Stack Java/Kotlin at EngeFour Jr.",
+        "description": "Aimed at developing mobile applications in Android Studio, with Java and Kotlin languages, using agile methodologies such as SCRUM, XP and KANBAN. I carried out studies on frameworks such as Angular and Spring boot, relational databases: MySQL, non-relational databases: MongoDB, DynamoDB.",
+        "startDate": "Set · 2016",
+        "endDate": "Ago · 2017",
+        "languages": ["Java", "Kotlin", "PHP", "Python"],
+        "databases": ["MySQL", "MongoDB", "DynamoDB", "PostgreSQL"],
+        "projects": ["Managing sales", "Room reservations", "Menu RU-UFMS"],
+        "learnings": ["Collection of requirements", "Agile methodologies", "IDEs", "Android Studio", "Object orientation"]
+    }
+]
