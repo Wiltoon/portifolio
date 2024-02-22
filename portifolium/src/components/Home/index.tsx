@@ -22,7 +22,7 @@ import {
 
 export function Home() {
     return (
-        <HomeContainer>
+        <HomeContainer id="home">
             <HomeName>
                 <HomeSaudacao>
                 👋 Saudações!
@@ -38,15 +38,20 @@ export function Home() {
                     Software Engineer · Full-Stack 
                 </HomeProfissional>
                 <HomeLinks>
+                    <a href="https://www.linkedin.com/in/wilton-software-engineer/" target="_blank" rel="noreferrer">
                     <HomeLink>
                         <img src={linkeDin} alt=""/>                    
                     </HomeLink>
+                    </a>
+                    <a href="https://www.github.com/wiltoon" target="_blank" rel="noreferrer">
                     <HomeLink>
                         <img src={gitHub} alt=""/>
                     </HomeLink>
+                    </a>
                 </HomeLinks>
             </HomeName>
-            <img src={memeBack} alt="" height={750} width={750}/>
+            
+            <img src={memeBack} alt="" style={{ maxWidth: '100%', height: 'auto', width: '50%' }} />
             <HomeCV>
                 <HomeDowload>
                     Baixar CV 

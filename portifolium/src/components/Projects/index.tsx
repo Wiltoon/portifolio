@@ -16,8 +16,8 @@ import {
 
 export function Projects(){
     return (
-        <ProjectContainer>
-            <Tag>🔗 Portfólio</Tag>
+        <ProjectContainer id="portfolio">
+            <Tag>🔗 Portfolio</Tag>
             <HeaderPortifolio>
                 <TitleWorks>Works and Projects</TitleWorks>
                 <SelectWorks>
@@ -45,6 +45,36 @@ export function Projects(){
                 <ProjectCard>
                     <CardTitle>
                         My Second
+                    </CardTitle>
+                    <CardDescription>
+                        Aplicação da NLW#04 da Rocketseat. Desenvolvida com React. Plataforma de Pomodoro com exercícios.
+                    </CardDescription>
+                    <CardTags>
+                        <TagSelected>Online</TagSelected>
+                        <TagSelected>Typescript</TagSelected>
+                    </CardTags>
+                    <CardImage>
+
+                    </CardImage>
+                </ProjectCard>
+                <ProjectCard>
+                    <CardTitle>
+                        My Third
+                    </CardTitle>
+                    <CardDescription>
+                        Aplicação da NLW#04 da Rocketseat. Desenvolvida com React. Plataforma de Pomodoro com exercícios.
+                    </CardDescription>
+                    <CardTags>
+                        <TagSelected>Online</TagSelected>
+                        <TagSelected>Typescript</TagSelected>
+                    </CardTags>
+                    <CardImage>
+
+                    </CardImage>
+                </ProjectCard>
+                <ProjectCard>
+                    <CardTitle>
+                        My Third
                     </CardTitle>
                     <CardDescription>
                         Aplicação da NLW#04 da Rocketseat. Desenvolvida com React. Plataforma de Pomodoro com exercícios.
