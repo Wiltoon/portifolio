@@ -6,6 +6,7 @@ import { About } from "../../components/About";
 import { Skills } from "../../components/Skills";
 import { Career } from "../../components/Career";
 import { Contact } from "../../components/Contact";
+import { Footer } from "../../components/Footer";
 
 export function Portifolio() {
     return (
@@ -13,13 +14,13 @@ export function Portifolio() {
             <Header/>
             <Home/>
             <About/>
-            <Experiences/>
+            {/* <Experiences/> */}
             <Projects/>
             <Skills/>
             <Career/>
             <Contact/>
             {/* <Recommendations/> */}
-            {/* <Footer/> */}
+            <Footer/>
         </div>
     )
 }

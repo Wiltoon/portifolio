@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Teacher Computer Science at ESTÁCIO",
+        "description": "Ensinando alunos a desenvolverem aplicações em React Native e Computação em Nuvem",
+        "startDate": "Feb · 2024",
+        "endDate": "At the moment",
+        "languages": ["Typescript", "Python"],
+        "databases": ["MySQL", "DynamoDB", "RDS", "PostgreSQL"],
+        "projects": [],
+        "learnings": []
+    },
+    {
+        "title": "Master's Degree in Computer Science at UFMS",
+        "description": "Desenvolvimento de algoritmo capaz de encontrar uma solução para o Problema de Roteamento Dinâmico de Veículos, tendo uma performance de mais de 15% entre os algoritmos comparados. Métrica definida a partir de uma linha de custo de gasolina por km/l e número de veículos utilizados.",
+        "startDate": "Mar · 2020",
+        "endDate": "Sep · 2022",
+        "languages": ["Docker", "Python", "C++", "Java", "CPLEX", "Gurobi"],
+        "databases": ["PostgreSQL", "MongoDB"],
+        "projects": ["Dynamic Vehicle Routing Problem"],
+        "learnings": ["Solving Problems"]
+    },
+    {
+        "title": "Graduation in Computer Engineering at UFMS",
+        "description": ".",
+        "startDate": "Jan · 2015",
+        "endDate": "Dec · 2019",
+        "languages": ["C", "C++", "Java", "Python", "Rust", "Typescript", "Javascript", "HTML", "CSS", "PHP", "Shell Script"],
+        "databases": ["MySQL", "MongoDB", "DynamoDB", "PostgreSQL"],
+        "projects": ["Relig", "Design of Controllers for Static Power Converters"],
+        "learnings": []
+    }
+]

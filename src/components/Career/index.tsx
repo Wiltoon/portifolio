@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import jobsData from './jobs.json';
+import educationsJobsData from './academics.json';
 import {
     CareerContainer,
     TagCareer,
@@ -16,15 +17,44 @@ import { Job } from '../Job';
 export function Career(){
     
     const [jobs, setJobs] = useState<{ title: string; description: string; startDate: string; endDate: string; languages: string[]; databases: string[]; projects: string[]; learnings: string[]; }[]>([]);
+    const [educations, setEducations] = useState<{ title: string; description: string; startDate: string; endDate: string; languages: string[]; databases: string[]; projects: string[]; learnings: string[]; }[]>([]);
 
     useEffect(() => {
         return setJobs(jobsData);
+    }, []);
+    
+    useEffect(() => {
+        return setEducations(educationsJobsData);
     }, []);
 
     if (jobs.length === 0) {
         return <div>Loading...</div>;
     }
+    if (educations.length === 0) {
+        return <div>Loading...</div>;
+    }
     const jobComponents = jobs.map((job: {
+        title: string;
+        description: string;
+        startDate: string;
+        endDate: string;
+        languages: string[];
+        databases: string[];
+        projects: string[];
+        learnings: string[]; 
+    }) => (
+        <Job
+            title={job.title}
+            description={job.description}
+            startDate={job.startDate}
+            endDate={job.endDate}
+            languages={job.languages}
+            databases={job.databases}
+            projects={job.projects}
+            learnings={job.learnings}
+        />
+    ));
+    const educationComponents = educations.map((job: {
         title: string;
         description: string;
         startDate: string;
@@ -62,7 +92,7 @@ export function Career(){
                     <TitleJournal>Academic</TitleJournal>
                     <Started>2012 · At the moment</Started>
                     <Jobs>
-
+                        {educationComponents}
                     </Jobs>
                 </Journal>
             </Journalist>
