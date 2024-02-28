@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 
 
 export const JobContainer = styled.section`
+    height: auto;
     margin-top: 30px;
     padding: 30px;
     border-radius: 10px;
