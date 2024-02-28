@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
+
 export const CareerContainer = styled.section`
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 600px;
+    height: 2500px;
 `;
+
 
 export const TagCareer = styled.div`
     display: flex;
@@ -65,4 +67,5 @@ export const Started = styled.div`
 
 export const Jobs = styled.div`
     gap: 20px;
+    height: auto;
 `;
