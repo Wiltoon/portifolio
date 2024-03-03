@@ -28,11 +28,6 @@ export function Contact(){
         }
     };
 
-
-    const handleScrollToTop = () => {
-        // Lógica para rolar para o topo da página
-    };
-
     return (
         <ContactContainer>
             <TagContact>📬 Contact</TagContact>
