@@ -6,9 +6,7 @@ import topBack from '../../assets/topBack.svg';
 
 import {
     ContactContainer, 
-    HomeContact, 
     TagContact, 
-    HomeFrase,
     TitleContact, 
     DatasContainer,
     MailContainer,

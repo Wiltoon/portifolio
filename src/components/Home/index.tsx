@@ -19,7 +19,7 @@ import {
 } from './styles';
 
 export function Home() {
-    const { language } = useLanguage();
+    const [language] = useLanguage();
     
     return (
         <HomeContainer id="home">

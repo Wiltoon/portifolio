@@ -11,7 +11,7 @@ import {
 } from "./styles";
 
 export function About(){
-    const { language } = useLanguage();
+    const [language] = useLanguage();
     const [profilePicture, setProfilePicture] = useState<string>("");
     
     useEffect(() => {
