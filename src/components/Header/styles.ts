@@ -35,3 +35,26 @@ export const HeaderItem = styled.div`
         color: ${props => props.theme['secundary-blue']};
     }
 `;
+
+export const LanguageButtons = styled.div`
+    gap: 10px;
+    display: flex;
+`;
+
+export const BrenButton = styled.button`
+    width: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: ${props => props.theme['background-blue']};
+    color: ${props => props.theme['white-50']};
+    border-radius: 15px;
+    border-color: ${props => props.theme['white-50']};
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover{
+        transition: background-color 0.4s;
+        background-color: ${props => props.theme['white-50']};
+    }
+`;
