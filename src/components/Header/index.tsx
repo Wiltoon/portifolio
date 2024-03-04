@@ -22,8 +22,8 @@ export function Header() {
                 <HeaderContent>
                     <img src={logoFloat} alt="" height={36} width={36}/>
                     <LanguageButtons>
-                        <BrenButton onClick={() => changeLanguage('EN')}>EN</BrenButton>
-                        <BrenButton onClick={() => changeLanguage('BR')}>BR</BrenButton>
+                        <BrenButton onClick={() => changeLanguage(() => 'EN')}>EN</BrenButton>
+                        <BrenButton onClick={() => changeLanguage(() => 'BR')}>BR</BrenButton>
                     </LanguageButtons>
                     <HeaderMenu>
                         {language === "EN" ? (
