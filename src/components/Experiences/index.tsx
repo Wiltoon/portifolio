@@ -1,13 +1,11 @@
 import codeIcon from '../../assets/codeIcon.svg';
 import educationIcon from '../../assets/educationIcon.svg';
 import worldIcon from '../../assets/worldIcon.svg';
-import { useLanguage } from '../../styles/languages/LanguageProvider';
 
 import { ExpContainer, ExpCard, ContentCard } from "./styles";
 
 export function Experiences(){
     
-    const { language } = useLanguage();
     return (
         <ExpContainer>
             <ExpCard>

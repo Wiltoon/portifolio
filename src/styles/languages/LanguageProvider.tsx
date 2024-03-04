@@ -1,14 +1,14 @@
 import React, { createContext, useContext, useState } from 'react';
 
 // 1. Crie um novo Context
-const LanguageContext = createContext({});
+export const LanguageContext = createContext<[string, React.Dispatch<React.SetStateAction<string>>] | undefined>(undefined);
 
 // 2. Crie um Provider Component
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-    const [language, setLanguage] = useState('en');
+    const [language, setLanguage] = useState('EN');
 
     return (
-        <LanguageContext.Provider value={{ language, setLanguage }}>
+        <LanguageContext.Provider value={ [language, setLanguage] as [string, React.Dispatch<React.SetStateAction<string>>] }>
             {children}
         </LanguageContext.Provider>
     );

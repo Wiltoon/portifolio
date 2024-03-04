@@ -9,10 +9,11 @@ import {
 } from "./styles";
 import logoFloat from '../../assets/logofloat.svg';
 import { useLanguage } from '../../styles/languages/LanguageProvider';
+import { StateUpdater } from "preact/hooks";
 
 export function Header() {
-    const {language, setLanguage} = useLanguage();
-    const changeLanguage = (selectedLanguage: string) => {
+    const [language, setLanguage] = useLanguage();
+    const changeLanguage = (selectedLanguage: StateUpdater<string>): void => {
         setLanguage(selectedLanguage);
     }
     return (
