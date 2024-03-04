@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 
-import whatsapp from '../../assets/whatsapp.svg';
 import send from '../../assets/send.svg';
 import copyIcon from '../../assets/copyMail.svg';
 import topBack from '../../assets/topBack.svg';
@@ -29,16 +28,10 @@ export function Contact(){
     };
 
     return (
-        <ContactContainer>
+        <ContactContainer id="contact">
             <TagContact>📬 Contact</TagContact>
             <TitleContact>Let's work together?</TitleContact>
             <DatasContainer>
-                <a href="https://api.whatsapp.com/send?phone=55067992027463" target="_blank" rel="noopener noreferrer">
-                <HomeContact>
-                    <img src={whatsapp} alt=""/>
-                    <HomeFrase>Whatsapp</HomeFrase>
-                </HomeContact>
-                </a>
                 
                 <MailContainer>
                     <img src={send} alt="" />

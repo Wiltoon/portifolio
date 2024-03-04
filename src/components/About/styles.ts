@@ -5,6 +5,7 @@ export const AboutContainer = styled.section`
     justify-content: space-evenly;
     width: 100%;
     height: 600px;
+    padding: 50px;
 `;
 
 export const ProfilePicture = styled.img`
