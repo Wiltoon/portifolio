@@ -5,6 +5,7 @@ import worldIcon from '../../assets/worldIcon.svg';
 import { ExpContainer, ExpCard, ContentCard } from "./styles";
 
 export function Experiences(){
+    
     return (
         <ExpContainer>
             <ExpCard>

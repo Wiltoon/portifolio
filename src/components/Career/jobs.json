@@ -1,32 +1,225 @@
 [
-    {
-        "title": "Software Engineer Cloud at IBM",
-        "description": "Development of applications in Java and Python, using TDD, DDD and BDD practices. Use of CI/CD. Use of Clean Code practices: SOLID, KISS, DRY and YAGNI. Agile methodologies: SCRUM, KANBAN. Software maintenance, creation of new functionalities. Bank migration. AWS cost reduction. Creation of unit and integrated tests to test some functions with jUnit and Mockito, use of mutant tests to improve code quality.",
-        "startDate": "Nov · 2022",
-        "endDate": "At the moment",
-        "languages": ["Java", "Python", "Terraform", "CloudFormation", "Node", "Typescript"],
-        "databases": ["MySQL", "DynamoDB", "RDS", "PostgreSQL"],
-        "projects": ["Foreign Exchange", "Opening Accounts", "Process Automation"],
-        "learnings": ["AWS Cloud Practitioner", "Agility Learning", "AWS Solutions Architect", "TDD", "DDD", "BDD", "Time management", "Communication", "Grownth Mindset"]
-    },
-    {
-        "title": "Full-Stack Java at EVOP",
-        "description": "At EVOP, I joined as an Intern, where I was able to work on monolithic software in Java and Angular. In the beginning, the entire system was generated on a local server, however, due to hacker attacks we were forced to migrate to the cloud. And the AWS Cloud was chosen. As a challenge to be implemented, I was responsible for creating a microservice to act on the monolithic. The purpose of this microservice was to communicate with ASAAS, which was responsible for generating payment invoices for our users' customers. For the software to capture the status of the bills, I created a messaging system with Kafka and SQS, to update when there was a change in the bill's status (cancelled, paid, expired, among others...). Once hired, I was responsible for creating new features in the WEB part of the software, creating dashboards and report generators (PDF and EXCEL). My codes have always been well oriented to follow the clean code standard: SOLID, KISS, YAGNI, DRY.",
-        "startDate": "Jun · 2019",
-        "endDate": "Jul · 2021",
-        "languages": ["Java", "Angular", "Typescript", "Node", "Python"],
-        "databases": ["PostgreSQL", "MongoDB"],
-        "projects": ["ASAAS", "Report Generator (PDF, EXCEL)", "Dashboards", "Microservices", "Monolithic"],
-        "learnings": ["Applications with messaging", "Versioning with GitHub and GitLab", "Software maintenance", "Integration of microservices with monoliths"]
-    },
-    {
-        "title": "Full-Stack Java/Kotlin at EngeFour Jr.",
-        "description": "Aimed at developing mobile applications in Android Studio, with Java and Kotlin languages, using agile methodologies such as SCRUM, XP and KANBAN. I carried out studies on frameworks such as Angular and Spring boot, relational databases: MySQL, non-relational databases: MongoDB, DynamoDB.",
-        "startDate": "Set · 2016",
-        "endDate": "Ago · 2017",
-        "languages": ["Java", "Kotlin", "PHP", "Python"],
-        "databases": ["MySQL", "MongoDB", "DynamoDB", "PostgreSQL"],
-        "projects": ["Managing sales", "Room reservations", "Menu RU-UFMS"],
-        "learnings": ["Collection of requirements", "Agile methodologies", "IDEs", "Android Studio", "Object orientation"]
-    }
+  {
+    "title": "Senior Software Engineer",
+    "company": "Trimble",
+    "description": "Working on innovative developments with facial recognition applications, route calculations with AWS and Azure, using Java, Kotlin and Python for the backend and Angular, React, React-native framework with JavaScript for the frontend. All applications developed need unit, integrated and automated tests. Focus on fleet management solutions and worker safety applications.",
+    "startDate": "2024-05-01",
+    "endDate": "At the moment",
+    "languages": ["Java", "Kotlin", "Python", "JavaScript", "TypeScript", "Angular", "React", "React Native", "Lua"],
+    "databases": ["Redis", "PostgreSQL", "DynamoDB"],
+    "projects": [
+      "Vfleets - Facial Recognition & Route Calculations",
+      "Worker PPE Detection System",
+      "Driver Photo Registration with Facial Recognition",
+      "Event Category Propagation System",
+      "Snapshot to Video Conversion Pipeline"
+    ],
+    "learnings": [
+      "Advanced Facial Recognition Implementation",
+      "Real-time AI Image Evaluation",
+      "Microservices Architecture with Kafka",
+      "AWS Lambda with Python for Video Generation",
+      "Infrastructure as Code with Terraform",
+      "Redis Lua Scripting for Performance",
+      "GitHub Actions for CI/CD Automation"
+    ],
+    "achievements": [
+      "Built real-time PPE detection system preventing workplace accidents",
+      "Developed secure driver photo registration reducing onboarding time by 40%",
+      "Implemented event categorization improving operational team efficiency",
+      "Created automated video generation from snapshots enhancing investigation processes",
+      "Architected scalable microservices handling thousands of daily fleet events"
+    ],
+    "responsibilities": [
+      "Develop facial recognition applications for fleet management",
+      "Build real-time worker safety monitoring systems",
+      "Design microservices architecture using Kafka for communication",
+      "Implement comprehensive testing strategies (unit, integration, automated)",
+      "Create secure photo registration flows with temporary URLs",
+      "Develop event processing systems for driving behavior analysis",
+      "Build AWS Lambda functions for video processing",
+      "Maintain Redis caching systems with Lua scripting"
+    ],
+    "linkedInUrl": "https://www.linkedin.com/in/wilton-software-engineer",
+    "recommendations": [
+      {
+        "author": "Tech Lead - Trimble",
+        "text": "Wilton's expertise in facial recognition and real-time processing has been invaluable to our fleet safety initiatives. His microservices architecture significantly improved our system scalability.",
+        "relationship": "Direct Manager"
+      },
+      {
+        "author": "Senior Developer - Trimble",
+        "text": "Exceptional problem-solving skills in complex AI integration projects. Always delivers robust, well-tested solutions with excellent documentation.",
+        "relationship": "Colleague"
+      }
+    ]
+  },
+  {
+    "title": "Software Application Developer",
+    "company": "IBM",
+    "description": "Developed cloud-native solutions for major banking clients including Itaú. Specialized in process automation, international exchange systems, account opening platforms, and customer segmentation using AWS services. Implemented TDD practices and mentored colleagues on cloud technologies and clean code principles.",
+    "startDate": "2022-11-01",
+    "endDate": "2024-04-30",
+    "languages": ["Java", "Python", "Terraform", "CloudFormation"],
+    "databases": ["RDS Aurora", "PostgreSQL", "DynamoDB", "OpenSearch"],
+    "projects": [
+      "Itaú Bank Process Automation (Manual to Cloud)",
+      "International Exchange SWIFT Message Recovery",
+      "Account Opening BFF Architecture (150k daily requests)",
+      "Customer Segment Targeting with ML",
+      "AWS Infrastructure Optimization"
+    ],
+    "learnings": [
+      "Enterprise-level AWS Architecture Design",
+      "Test Driven Development (TDD) and Mutation Testing",
+      "Banking Industry Standards and SWIFT Integration",
+      "Machine Learning for Customer Segmentation",
+      "High-Availability Systems Design",
+      "Mentoring and Knowledge Transfer",
+      "Agile Methodologies (SCRUM, XP, KANBAN)"
+    ],
+    "achievements": [
+      "Automated manual process reducing 10+ employees per agency to zero manual work",
+      "Recovered lost SWIFT messages from 3 big datasets without impacting end users",
+      "Built BFF handling 150,000 daily requests with 99.9% uptime",
+      "Improved customer segmentation reducing account opening time by 4%",
+      "Implemented machine learning model for customer profile identification",
+      "Mentored 10+ colleagues on AWS services and clean code practices"
+    ],
+    "responsibilities": [
+      "Design and implement cloud-native banking solutions on AWS",
+      "Develop automated processes replacing manual workflows",
+      "Build high-performance BFFs handling thousands of daily requests",
+      "Implement TDD and mutation testing for code quality assurance",
+      "Design Step Functions and Lambda architectures for data processing",
+      "Integrate with banking systems including SWIFT messaging",
+      "Monitor system performance using CloudWatch, Splunk, and Grafana",
+      "Mentor team members on AWS services and development best practices"
+    ],
+    "linkedInUrl": "https://www.linkedin.com/in/wilton-software-engineer",
+    "recommendations": [
+      {
+        "author": "Solutions Architect - IBM",
+        "text": "Wilton's expertise in AWS architecture and banking systems was crucial for our major client implementations. His mentoring abilities helped elevate the entire team's technical skills.",
+        "relationship": "Technical Lead"
+      },
+      {
+        "author": "Product Manager - IBM",
+        "text": "Outstanding delivery of complex banking automation projects. Always focused on end-user impact while maintaining the highest technical standards. His TDD approach significantly improved code quality.",
+        "relationship": "Product Manager"
+      }
+    ]
+  },
+  {
+    "title": "Software Engineer",
+    "company": "EVOP",
+    "description": "Worked as full-stack developer on monolithic ERP system migration to cloud and microservices architecture. Specialized in report generation, payment integration with ASAAS, HR dashboards, and cost apportionment systems for construction companies. Led cloud migration during security incidents.",
+    "startDate": "2019-06-01",
+    "endDate": "2022-07-31",
+    "languages": ["Java", "Angular", "JSF", "JavaScript"],
+    "databases": ["PostgreSQL", "MySQL"],
+    "projects": [
+      "Excel/PDF Report Generator and Reader",
+      "ASAAS Payment Microservice Integration",
+      "HR Dashboard with Analytics and Forecasting",
+      "Cost Apportionment System for Construction Companies",
+      "Monolithic to Cloud Migration"
+    ],
+    "learnings": [
+      "Monolithic to Microservices Migration Strategies",
+      "Payment Gateway Integration and Event Processing",
+      "Full-Stack Development with Java and Angular",
+      "ERP System Development for Construction Industry",
+      "Report Generation and Template Management",
+      "Message Queue Systems (Kafka, RabbitMQ, SQS)",
+      "Spring Framework Ecosystem (Boot, MVC, Security)"
+    ],
+    "achievements": [
+      "Successfully migrated monolithic system to AWS cloud during security crisis",
+      "Built report generator that became client favorite feature",
+      "Developed microservice handling thousands of daily payment notifications",
+      "Created comprehensive HR analytics reducing manual reporting by 80%",
+      "Implemented cost sharing system enabling multi-company collaboration",
+      "Established clean code practices within legacy monolithic system"
+    ],
+    "responsibilities": [
+      "Develop and maintain ERP system for construction industry",
+      "Design report generation templates for Excel and PDF formats",
+      "Build microservices for payment processing integration",
+      "Create HR analytics dashboards with salary and budget forecasting",
+      "Implement cost apportionment algorithms for multi-company projects",
+      "Maintain message queue systems for real-time event processing",
+      "Ensure code quality within monolithic architecture constraints",
+      "Collaborate on cloud migration strategies and implementation"
+    ],
+    "linkedInUrl": "https://www.linkedin.com/in/wilton-software-engineer",
+    "recommendations": [
+      {
+        "author": "CTO - EVOP",
+        "text": "Wilton's leadership during our emergency cloud migration was exceptional. His technical skills in both monolithic and microservices architectures made the transition seamless for our clients.",
+        "relationship": "Direct Manager"
+      },
+      {
+        "author": "Senior Developer - EVOP",
+        "text": "Excellent full-stack developer with deep understanding of ERP systems. His report generation solution significantly improved client satisfaction and reduced support tickets.",
+        "relationship": "Colleague"
+      }
+    ]
+  },
+  {
+    "title": "Software Developer",
+    "company": "EngeFour Jr.",
+    "description": "Developed mobile applications and web solutions for various clients including sales management, room reservation system, and university restaurant menu app. Created company website that significantly increased business visibility and client acquisition. Worked with Android Studio, multiple databases, and microservices.",
+    "startDate": "2016-09-01",
+    "endDate": "2017-08-31",
+    "languages": ["Java", "Kotlin", "C++", "PHP", "Android"],
+    "databases": ["MySQL", "MongoDB"],
+    "projects": [
+      "Sales Management Mobile Application",
+      "Room Reservation System for University",
+      "University Restaurant Menu Mobile App",
+      "EngeFour Jr. Company Website",
+      "Microservices with C++ Drogon Framework"
+    ],
+    "learnings": [
+      "Mobile Application Development from Scratch",
+      "Android Studio and Native Development",
+      "Database Design and Implementation",
+      "Client Requirements Analysis and Management",
+      "Business Development and Client Acquisition",
+      "Microservices Architecture with C++",
+      "Web Development with PHP and Canvas Design"
+    ],
+    "achievements": [
+      "Delivered mobile app that helped client break revenue record in the same year",
+      "Built room reservation system reducing bureaucracy by 90%",
+      "Created university menu app serving thousands of students daily",
+      "Developed company website that doubled client acquisition rate",
+      "Established mobile development standards still used by the company",
+      "Led team projects from conception to deployment"
+    ],
+    "responsibilities": [
+      "Develop native Android applications using Java and Kotlin",
+      "Design and implement database schemas for mobile applications",
+      "Analyze client requirements and translate to technical solutions",
+      "Build inventory control and customer management systems",
+      "Create microservices using C++ Drogon framework",
+      "Develop responsive web applications with PHP",
+      "Design user interfaces using Canvas for visual appeal",
+      "Manage client relationships and project deliverables"
+    ],
+    "linkedInUrl": "https://www.linkedin.com/in/wilton-software-engineer",
+    "recommendations": [
+      {
+        "author": "Project Manager - EngeFour Jr.",
+        "text": "Wilton was instrumental in establishing our mobile development capabilities. His sales management app helped one of our clients achieve record-breaking revenue. Excellent technical and communication skills.",
+        "relationship": "Direct Manager"
+      },
+      {
+        "author": "Client - Local Business Owner",
+        "text": "The mobile application Wilton developed transformed our business operations. Inventory control became effortless and we could finally track our recurring customers properly. Outstanding work!",
+        "relationship": "Client"
+      }
+    ]
+  }
 ]

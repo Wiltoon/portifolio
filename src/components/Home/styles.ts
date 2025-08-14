@@ -34,9 +34,9 @@ export const HomeContact = styled.button`
     display: flex;
     padding: 10px;
     background-color: ${props => props.theme['background-blue']};
-    color: ${props => props.theme['secundary-blue-50']};
+    color: ${props => props.theme['secundary-blue']};
     border-radius: 15px;
-    border-color: ${props => props.theme['secundary-blue-50']};
+    border-color: ${props => props.theme['secundary-blue']};
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
@@ -48,6 +48,8 @@ export const HomeContact = styled.button`
 
 export const HomeFrase = styled.div`
     margin-left: 5px;
+    font-size: 15px;
+    font-family: 700 1rem Raleway, sans-serif;
 `;
 
 export const HomeSaudacao = styled.div`

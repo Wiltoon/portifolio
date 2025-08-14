@@ -1,5 +1,6 @@
 import dailysCodes from '../../assets/dailysCodes.svg';
 import otherStacks from '../../assets/otherStacks.svg';
+import { SimpleGitHubStats } from '../SimpleGitHubStats';
 
 import { 
     SkillsExpContainer, 
@@ -22,6 +23,8 @@ export function Skills(){
                 <StackDaily>
                     <img src={otherStacks} alt=""/>  
                 </StackDaily>
+                
+                <SimpleGitHubStats />
             </SkillsExpContainer>
         );
     }

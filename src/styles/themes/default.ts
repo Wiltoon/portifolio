@@ -7,9 +7,13 @@ export const defaultTheme = {
     'secundary-blue-50': 'rgba(24,100,171,0.5)',
     'background-blue':'#090E16',
     'background-blue-10':'rgba(9,14,22,0.1)',
+    
+    'background': '#0f172a',
+    'background-secondary': 'rgba(15, 23, 42, 0.6)',
 
     'secundary-purple':'#7B4AE2',
     'secundary-purple-10':'rgba(123,74,226,0.1)',
+    'purple': '#8b5cf6',
 
     'green-online':'#4AE290',
     'green-online-10':'rgba(74,226,144,0.1)'
