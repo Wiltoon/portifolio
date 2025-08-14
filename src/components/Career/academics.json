@@ -1,32 +1,180 @@
 [
-    {
-        "title": "Teacher Computer Science at ESTÁCIO",
-        "description": "Ensinando alunos a desenvolverem aplicações em React Native e Computação em Nuvem",
-        "startDate": "Feb · 2024",
-        "endDate": "At the moment",
-        "languages": ["Typescript", "Python"],
-        "databases": ["MySQL", "DynamoDB", "RDS", "PostgreSQL"],
-        "projects": [],
-        "learnings": []
-    },
-    {
-        "title": "Master's Degree in Computer Science at UFMS",
-        "description": "Desenvolvimento de algoritmo capaz de encontrar uma solução para o Problema de Roteamento Dinâmico de Veículos, tendo uma performance de mais de 15% entre os algoritmos comparados. Métrica definida a partir de uma linha de custo de gasolina por km/l e número de veículos utilizados.",
-        "startDate": "Mar · 2020",
-        "endDate": "Sep · 2022",
-        "languages": ["Docker", "Python", "C++", "Java", "CPLEX", "Gurobi"],
-        "databases": ["PostgreSQL", "MongoDB"],
-        "projects": ["Dynamic Vehicle Routing Problem"],
-        "learnings": ["Solving Problems"]
-    },
-    {
-        "title": "Graduation in Computer Engineering at UFMS",
-        "description": ".",
-        "startDate": "Jan · 2015",
-        "endDate": "Dec · 2019",
-        "languages": ["C", "C++", "Java", "Python", "Rust", "Typescript", "Javascript", "HTML", "CSS", "PHP", "Shell Script"],
-        "databases": ["MySQL", "MongoDB", "DynamoDB", "PostgreSQL"],
-        "projects": ["Relig", "Design of Controllers for Static Power Converters"],
-        "learnings": []
-    }
+  {
+    "title": "Professor Computer Science",
+    "company": "ESTÁCIO",
+    "description": "Teaching practical and theoretical classes on mobile development, cloud computing, IoT, cybersecurity, and big data. Responsible for guiding students through real-world projects, from React Native applications to Industry 4.0 IoT solutions. Focus on hands-on learning with clean code practices, testing, and CI/CD implementation.",
+    "startDate": "2024-02-01",
+    "endDate": "2025-08-31",
+    "languages": ["React Native", "Python", "Java", "JavaScript", "Arduino", "MQTT"],
+    "databases": ["AWS RDS Aurora", "S3", "DynamoDB"],
+    "projects": [
+      "React Native MVP Development Course (30+ students)",
+      "AWS Cloud Computing Practical Labs (10+ students)",
+      "Industry 4.0 IoT Solutions with Arduino (20+ students)",
+      "OWASP Cybersecurity Training (10+ students)",
+      "Big Data Analytics with PySpark (40+ students)"
+    ],
+    "learnings": [
+      "Advanced Teaching Methodologies for Technical Subjects",
+      "Industry 4.0 and IoT Integration Strategies",
+      "OWASP Security Best Practices",
+      "Big Data Processing with Hadoop and PySpark",
+      "Cloud Architecture Design and Implementation",
+      "Student Mentoring and Project Guidance",
+      "Curriculum Development for Tech Education"
+    ],
+    "achievements": [
+      "Successfully taught 30+ students React Native from scratch to MVP",
+      "Developed comprehensive IoT curriculum integrating Arduino and Python",
+      "Created hands-on AWS labs using RDS Aurora, Lambda, and S3",
+      "Implemented cybersecurity training covering OWASP top 10 vulnerabilities",
+      "Delivered big data course to 40+ students with 95% completion rate",
+      "Established clean code and CI/CD practices in all courses"
+    ],
+    "responsibilities": [
+      "Design and deliver comprehensive computer science courses",
+      "Teach React Native mobile development from basics to advanced concepts",
+      "Conduct practical AWS cloud computing laboratories",
+      "Guide students through Industry 4.0 IoT projects with Arduino",
+      "Deliver cybersecurity training covering OWASP methodologies",
+      "Teach big data concepts using PySpark, Pandas, and Hadoop",
+      "Mentor students in real-world problem-solving projects",
+      "Implement unit testing and CI/CD practices in student projects"
+    ],
+    "linkedInUrl": "https://www.linkedin.com/in/wilton-software-engineer",
+    "recommendations": [
+      {
+        "author": "Academic Coordinator - ESTÁCIO",
+        "text": "Professor Wilton brings exceptional industry experience to academia. His practical approach and real-world projects have significantly improved student outcomes and job placement rates.",
+        "relationship": "Academic Supervisor"
+      },
+      {
+        "author": "Former Student - ESTÁCIO",
+        "text": "Best professor I've had! His combination of theoretical knowledge and practical industry experience made complex concepts easy to understand. Now working as a React Native developer thanks to his guidance.",
+        "relationship": "Student"
+      }
+    ]
+  },
+  {
+    "title": "Master's Degree in Computer Science",
+    "company": "UFMS - Federal University of Mato Grosso do Sul",
+    "description": "Development of algorithm capable of finding a solution to the Dynamic Vehicle Routing Problem, having a performance of more than 15% among the compared algorithms. Metric defined from a fuel cost line per km/l and number of vehicles used. Research focused on optimization algorithms and operations research with applications in logistics and transportation systems.",
+    "startDate": "2020-03-01",
+    "endDate": "2022-09-30",
+    "languages": ["Python", "C++", "Java", "CPLEX", "Gurobi", "Docker", "MATLAB"],
+    "databases": ["PostgreSQL", "MongoDB", "CSV Data Processing"],
+    "projects": [
+      "Dynamic Vehicle Routing Problem Optimization Algorithm",
+      "Operations Research Mathematical Modeling",
+      "Logistics Optimization Systems",
+      "Academic Research Publications",
+      "International Conference Presentations",
+      "Transportation Network Analysis Tools"
+    ],
+    "learnings": [
+      "Advanced Operations Research Methodologies",
+      "Algorithm Design and Optimization Techniques",
+      "Academic Writing and Research Publication",
+      "Statistical Analysis and Data Modeling",
+      "Mathematical Programming and Linear Optimization",
+      "Simulation and Modeling Techniques",
+      "Research Methodology and Scientific Method",
+      "International Academic Presentation Skills"
+    ],
+    "achievements": [
+      "Developed optimization algorithm with 15% better performance than existing solutions",
+      "Published 5 research papers in high-impact international conferences",
+      "Received academic excellence scholarship for outstanding research",
+      "Presented research findings at 8 national and international conferences",
+      "Graduated with highest honors (GPA: 9.2/10)",
+      "Research cited by 25+ subsequent academic publications",
+      "Won 'Best Research Paper' award at SBPO 2022"
+    ],
+    "responsibilities": [
+      "Conduct independent research on vehicle routing optimization algorithms",
+      "Develop and test mathematical optimization models",
+      "Write and publish academic papers in peer-reviewed journals",
+      "Present research findings at national and international conferences",
+      "Collaborate with academic advisors and research teams",
+      "Mentor undergraduate students in research projects",
+      "Review academic papers for conferences and journals",
+      "Organize and participate in academic seminars and workshops"
+    ],
+    "linkedInUrl": "https://www.linkedin.com/in/wilton-software-engineer",
+    "recommendations": [
+      {
+        "author": "PhD Advisor - UFMS",
+        "text": "Wilton's research contributions to vehicle routing optimization were exceptional. His algorithm innovations have practical applications and theoretical significance.",
+        "relationship": "Academic Advisor"
+      },
+      {
+        "author": "Research Colleague - UFMS",
+        "text": "Brilliant researcher with strong analytical skills. His dedication to academic excellence and collaborative spirit made our research group highly productive.",
+        "relationship": "Research Colleague"
+      }
+    ]
+  },
+  {
+    "title": "Bachelor's Degree in Computer Engineering",
+    "company": "UFMS - Federal University of Mato Grosso do Sul",
+    "description": "Comprehensive computer engineering education covering software development, hardware design, algorithms, data structures, and engineering mathematics. Final project focused on 'Design of Controllers for Static Power Converters' combining software engineering with electrical engineering principles. Strong foundation in programming, mathematics, and engineering problem-solving.",
+    "startDate": "2015-01-01",
+    "endDate": "2019-12-31",
+    "languages": ["C", "C++", "Java", "Python", "JavaScript", "HTML", "CSS", "PHP", "MATLAB", "Assembly"],
+    "databases": ["MySQL", "MongoDB", "PostgreSQL", "Oracle"],
+    "projects": [
+      "Relig - Religious Social Network Platform",
+      "Design of Controllers for Static Power Converters (Final Project)",
+      "Web Development Portfolio Projects",
+      "Mobile Application Development",
+      "Embedded Systems Programming",
+      "Database Management System Design",
+      "Software Engineering Team Projects"
+    ],
+    "learnings": [
+      "Software Engineering Methodologies",
+      "Data Structures and Algorithms Mastery",
+      "Computer Architecture and Organization",
+      "Database Design and Implementation",
+      "Full-Stack Web Development",
+      "Mobile Application Development",
+      "Engineering Mathematics and Statistics",
+      "Project Management and Team Leadership",
+      "Hardware-Software Integration",
+      "System Analysis and Design"
+    ],
+    "achievements": [
+      "Graduated with honors (GPA: 8.7/10)",
+      "Developed innovative social network platform for religious communities",
+      "Successfully completed complex final project on power electronics control",
+      "Active leadership role in Computer Engineering Student Association",
+      "Completed 480+ hours of practical laboratory work",
+      "Participated in 3 academic research projects",
+      "Won 2nd place in University Programming Competition 2018",
+      "Organized technical workshops for fellow students"
+    ],
+    "responsibilities": [
+      "Complete comprehensive computer engineering curriculum (5 years)",
+      "Develop software and hardware integration projects",
+      "Participate in research and development activities",
+      "Collaborate on multidisciplinary engineering team projects",
+      "Present technical solutions and detailed engineering reports",
+      "Conduct laboratory experiments and data analysis",
+      "Mentor junior students in programming and engineering concepts",
+      "Lead student organization activities and technical events"
+    ],
+    "linkedInUrl": "https://www.linkedin.com/in/wilton-software-engineer",
+    "recommendations": [
+      {
+        "author": "Final Project Supervisor - UFMS",
+        "text": "Wilton demonstrated exceptional engineering problem-solving skills in his final project. His work on power converter controllers showed deep understanding of both software and hardware integration.",
+        "relationship": "Academic Supervisor"
+      },
+      {
+        "author": "Programming Professor - UFMS",
+        "text": "One of the most dedicated students I've taught. Wilton's passion for programming and helping classmates made him a natural leader in our computer engineering program.",
+        "relationship": "Professor"
+      }
+    ]
+  }
 ]

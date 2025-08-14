@@ -27,7 +27,7 @@ export function Home() {
                 <>
                     <HomeName>
                         <HomeSaudacao>
-                        👋 Welcome!
+                            👋 Welcome!
                         </HomeSaudacao>
                         <HomeMark>
                             <HomeNome>
@@ -54,8 +54,9 @@ export function Home() {
                     </HomeName>
                     
                     <img src={memeBack} alt="" style={{ maxWidth: '100%', height: 'auto', width: '50%' }} />
+                    
                     <HomeCV>
-                        <a href="#contact" target="_blank" rel="noreferrer">
+                        <a href="#contact" rel="noreferrer">
                             <HomeContact>
                                 <HomeFrase>Let's work together?</HomeFrase>
                             </HomeContact>
@@ -66,7 +67,7 @@ export function Home() {
                     <>
                     <HomeName>
                         <HomeSaudacao>
-                        👋 Saudações!
+                            👋 Saudações!
                         </HomeSaudacao>
                         <HomeMark>
                             <HomeNome>
@@ -93,15 +94,16 @@ export function Home() {
                     </HomeName>
                     
                     <img src={memeBack} alt="" style={{ maxWidth: '100%', height: 'auto', width: '50%' }} />
+                    
                     <HomeCV>
-                        <a href="#contact" target="_blank" rel="noreferrer">
+                        <a href="#contact" rel="noreferrer">
                             <HomeContact>
                                 <HomeFrase>Vamos trabalhar juntos?</HomeFrase>
                             </HomeContact>
                         </a>
                     </HomeCV>
-                </> 
-                )}
+                </>
+            )}
         </HomeContainer>
-    )
+    );
 }

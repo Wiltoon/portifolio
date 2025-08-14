@@ -1,6 +1,6 @@
 import { Header } from "../../components/Header";
 import { Home } from "../../components/Home";
-import { Projects } from "../../components/Projects";
+import { SimpleProjects } from "../../components/SimpleProjects";
 import { About } from "../../components/About";
 import { Skills } from "../../components/Skills";
 import { Career } from "../../components/Career";
@@ -14,7 +14,7 @@ export function Portifolio() {
             <Home/>
             <About/>
             {/* <Experiences/> */}
-            <Projects/>
+            <SimpleProjects/>
             <Skills/>
             <Career/>
             <Contact/>
