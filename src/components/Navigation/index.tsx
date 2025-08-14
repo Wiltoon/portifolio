@@ -36,12 +36,12 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
   const navItems = language === 'EN' ? [
     { id: 'home', label: 'Home' },
     { id: 'projects', label: 'Projects' },
-    { id: 'about', label: 'About' },
+    { id: 'experiences', label: 'Experiences' },
     { id: 'contact', label: 'Contact' }
   ] : [
     { id: 'home', label: 'Início' },
     { id: 'projects', label: 'Projetos' },
-    { id: 'about', label: 'Sobre' },
+    { id: 'experiences', label: 'Experiências' },
     { id: 'contact', label: 'Contato' }
   ];
 

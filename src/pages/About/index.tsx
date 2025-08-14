@@ -7,11 +7,11 @@ export function AboutPage() {
   const [language] = useLanguage();
 
   const labels = language === 'EN' ? {
-    title: 'About Me',
-    subtitle: 'Know my professional and academic trajectory'
+    title: 'My Experiences',
+    subtitle: 'Discover my professional and academic journey'
   } : {
-    title: 'Sobre Mim',
-    subtitle: 'Conheça minha trajetória profissional e acadêmica'
+    title: 'Minhas Experiências',
+    subtitle: 'Conheça minha jornada profissional e acadêmica'
   };
 
   return (
