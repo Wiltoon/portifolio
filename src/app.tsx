@@ -17,7 +17,7 @@ export function App() {
         return <HomePage />;
       case 'projects':
         return <ProjectsPage />;
-      case 'about':
+      case 'experiences':
         return <AboutPage />;
       case 'contact':
         return <ContactPage />;
