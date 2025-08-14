@@ -4,7 +4,7 @@
     "company": "ESTÁCIO",
     "description": "Teaching practical and theoretical classes on mobile development, cloud computing, IoT, cybersecurity, and big data. Responsible for guiding students through real-world projects, from React Native applications to Industry 4.0 IoT solutions. Focus on hands-on learning with clean code practices, testing, and CI/CD implementation.",
     "startDate": "2024-02-01",
-    "endDate": "2025-08-31",
+    "endDate": "2025-07-31",
     "languages": ["React Native", "Python", "Java", "JavaScript", "Arduino", "MQTT"],
     "databases": ["AWS RDS Aurora", "S3", "DynamoDB"],
     "projects": [

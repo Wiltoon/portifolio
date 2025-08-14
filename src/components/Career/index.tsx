@@ -167,7 +167,6 @@ export function Career(){
                     </Journal>
                 </Journalist>
                 
-                {/* Timeline integrada mostrando sobreposição */}
                 <Timeline experiences={getAllExperiences()} />
                 
                 <LinkedInSection>

@@ -1,5 +1,28 @@
-import { useMemo } from 'react';
+import React, { useMemo, useRef, useEffect, useState, useCallback } from 'react';
 import { useLanguage } from '../../styles/languages/LanguageProvider';
+import {
+  TimelineWrapper,
+  TimelineHeader,
+  TimelineSectionTitle,
+  TimelineSectionSubtitle,
+  TimelineContainer,
+  TimelineItem,
+  TimelineContent,
+  TimelineDate,
+  TimelineTitle,
+  TimelineCompany,
+  TimelineDescription,
+  TimelineDot,
+  TimelineLine,
+  ConnectionLineVertical,
+  ConnectionLineHorizontal,
+  DurationBadge,
+  CurrentTimelineItem,
+  CurrentTimelineDot,
+  CurrentTimelineContent,
+  CurrentTimelineTitle,
+  CurrentTimelineDescription,
+} from './styles';
 
 interface Experience {
     title: string;
@@ -8,291 +31,280 @@ interface Experience {
     startDate: string;
     endDate: string;
     type: 'professional' | 'academic';
+    originalIndex?: number;
 }
 
 interface TimelineProps {
-    experiences: Experience[];
+  experiences: Experience[];
 }
 
 export function Timeline({ experiences }: TimelineProps) {
-    const [language] = useLanguage();
+  const [language] = useLanguage();
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const timelineLineRef = useRef<HTMLDivElement | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-    const labels = language === 'EN' ? {
-        professional: 'Professional',
-        academic: 'Academic',
-        present: 'Present',
-        timeline: 'Career Timeline',
-        concurrent: 'Concurrent Activities',
-        concurrentDesc: 'Professional and academic activities happening simultaneously'
-    } : {
-        professional: 'Profissional',
-        academic: 'Acadêmico',
-        present: 'Atual',
-        timeline: 'Linha do Tempo',
-        concurrent: 'Atividades Simultâneas',
-        concurrentDesc: 'Atividades profissionais e acadêmicas acontecendo simultaneamente'
-    };
+  const [connections, setConnections] = useState<
+    {
+      top: number;
+      left: number;
+      height: number;
+      duration: string;
+      topHorizontal: { top: number; left: number; width: number };
+      bottomHorizontal: { top: number; left: number; width: number };
+    }[]
+  >([]);
 
-    // Ordenar experiências por data de início (mais recente primeiro)
-    const sortedExperiences = experiences.sort((a, b) => {
-        return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
+  const labels =
+    language === 'EN'
+      ? {
+          professional: 'Professional',
+          academic: 'Academic',
+          present: 'Present',
+        }
+      : {
+          professional: 'Profissional',
+          academic: 'Acadêmico',
+          present: 'Atual',
+        };
+
+  const sortedExperiences = useMemo(() => {
+    return [...experiences].sort(
+      (a, b) =>
+        new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
+    );
+  }, [experiences]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const handleResize = () => setIsMobile(mediaQuery.matches);
+    
+    handleResize();
+    mediaQuery.addEventListener('change', handleResize);
+    
+    return () => mediaQuery.removeEventListener('change', handleResize);
+  }, []);
+
+  const calculateConnections = useCallback(() => {
+    if (!timelineLineRef.current) return;
+
+    const newConnections: {
+      top: number;
+      left: number;
+      height: number;
+      duration: string;
+      topHorizontal: { top: number; left: number; width: number };
+      bottomHorizontal: { top: number; left: number; width: number };
+    }[] = [];
+    const experienceGroups: { [key: string]: (Experience & { originalIndex: number })[] } = {};
+
+    sortedExperiences.forEach((exp, index) => {
+      if (exp.type === 'professional' && exp.company) {
+        const key = exp.company;
+        if (!experienceGroups[key]) {
+          experienceGroups[key] = [];
+        }
+        experienceGroups[key].push({ ...exp, originalIndex: index });
+      }
     });
 
-    // Encontrar períodos de sobreposição
-    const overlappingPeriods = useMemo(() => {
-        const overlaps: Array<{
-            startDate: string;
-            endDate: string;
-            experiences: Experience[];
-        }> = [];
+    Object.values(experienceGroups).forEach((group) => {
+      if (group.length > 1) {
+        group.sort(
+          (a, b) =>
+            new Date(a.startDate).getTime() -
+            new Date(b.startDate).getTime(),
+        );
+        const topExp = group[group.length - 1];
+        const bottomExp = group[0];
 
-        for (let i = 0; i < experiences.length; i++) {
-            for (let j = i + 1; j < experiences.length; j++) {
-                const exp1 = experiences[i];
-                const exp2 = experiences[j];
+        const topCardContent = contentRefs.current[topExp.originalIndex];
+        const bottomCardContent = contentRefs.current[bottomExp.originalIndex];
+        const container = itemRefs.current[topExp.originalIndex]?.parentElement;
 
-                // Apenas verificar se são tipos diferentes
-                if (exp1.type !== exp2.type) {
-                    const start1 = new Date(exp1.startDate);
-                    const end1 = new Date(exp1.endDate === 'At the moment' || exp1.endDate === 'Atual' ? new Date() : exp1.endDate);
-                    const start2 = new Date(exp2.startDate);
-                    const end2 = new Date(exp2.endDate === 'At the moment' || exp2.endDate === 'Atual' ? new Date() : exp2.endDate);
+        if (topCardContent && bottomCardContent && container && timelineLineRef.current) {
+          const topRect = topCardContent.getBoundingClientRect();
+          const bottomRect = bottomCardContent.getBoundingClientRect();
+          const containerRect = container.getBoundingClientRect();
+          const timelineLineRect = timelineLineRef.current.getBoundingClientRect();
 
-                    // Verificar sobreposição
-                    const overlapStart = new Date(Math.max(start1.getTime(), start2.getTime()));
-                    const overlapEnd = new Date(Math.min(end1.getTime(), end2.getTime()));
+          const verticalLineLeft = timelineLineRect.left + timelineLineRect.width / 2 - containerRect.left;
 
-                    if (overlapStart <= overlapEnd) {
-                        overlaps.push({
-                            startDate: overlapStart.toISOString().split('T')[0],
-                            endDate: overlapEnd.toISOString().split('T')[0],
-                            experiences: [exp1, exp2]
-                        });
-                    }
-                }
+          const topCardSide = isMobile ? 'right' : (topExp.originalIndex % 2 === 0 ? 'left' : 'right');
+          const bottomCardSide = isMobile ? 'right' : (bottomExp.originalIndex % 2 === 0 ? 'left' : 'right');
+
+          const top = topRect.top + topRect.height / 2 - containerRect.top;
+          const height = (bottomRect.top + bottomRect.height / 2) - (topRect.top + topRect.height / 2);
+
+          const topHorizontal = {
+            top: topRect.top + topRect.height / 2 - containerRect.top,
+            left: topCardSide === 'left' ? topRect.right - containerRect.left : verticalLineLeft,
+            width: topCardSide === 'left' 
+                ? verticalLineLeft - (topRect.right - containerRect.left) 
+                : (topRect.left - containerRect.left) - verticalLineLeft,
+          };
+
+          const bottomHorizontal = {
+            top: bottomRect.top + bottomRect.height / 2 - containerRect.top,
+            left: bottomCardSide === 'left' ? bottomRect.right - containerRect.left : verticalLineLeft,
+            width: bottomCardSide === 'left' 
+                ? verticalLineLeft - (bottomRect.right - containerRect.left) 
+                : (bottomRect.left - containerRect.left) - verticalLineLeft,
+          };
+
+          const startDate = new Date(bottomExp.startDate);
+          const endDateValue = topExp.endDate === 'At the moment' || topExp.endDate === 'Atual' 
+              ? new Date() 
+              : new Date(topExp.endDate);
+          
+          let months = (endDateValue.getFullYear() - startDate.getFullYear()) * 12;
+          months -= startDate.getMonth();
+          months += endDateValue.getMonth();
+          const totalMonths = months <= 0 ? 0 : months;
+
+          const years = Math.floor(totalMonths / 12);
+          const remainingMonths = totalMonths % 12;
+          
+          const durationParts = [];
+          if (years > 0) durationParts.push(`${years}a`);
+          if (remainingMonths > 0) durationParts.push(`${remainingMonths}m`);
+          const duration = durationParts.length > 0 ? durationParts.join(' ') : '1m';
+
+          newConnections.push({ top, left: verticalLineLeft, height, duration, topHorizontal, bottomHorizontal });
+        }
+      }
+    });
+    setConnections(newConnections);
+  }, [sortedExperiences, isMobile]);
+
+  useEffect(() => {
+    calculateConnections();
+    window.addEventListener('resize', calculateConnections);
+    return () => window.removeEventListener('resize', calculateConnections);
+  }, [calculateConnections]);
+
+  return (
+    <TimelineWrapper>
+      <TimelineHeader>
+        <TimelineSectionTitle>
+          {language === 'EN' ? 'Career Journey' : 'Jornada Profissional'}
+        </TimelineSectionTitle>
+        <TimelineSectionSubtitle>
+          {language === 'EN' 
+            ? 'Follow my career evolution through time, showing the overlap and progression of my professional and academic experiences.'
+            : 'Acompanhe a evolução da minha carreira ao longo do tempo, mostrando a sobreposição e progressão das minhas experiências profissionais e acadêmicas.'
+          }
+        </TimelineSectionSubtitle>
+      </TimelineHeader>
+      
+      <TimelineContainer>
+        <TimelineLine ref={timelineLineRef} />
+        {sortedExperiences.map((exp, index) => {
+        const side = isMobile ? 'right' : (index % 2 === 0 ? 'left' : 'right');
+        return (
+          <TimelineItem
+            key={index}
+            side={side}
+            ref={(el: HTMLDivElement | null) => (itemRefs.current[index] = el)}
+          >
+            <TimelineDot type={exp.type}>
+              <div>
+                {new Date(exp.startDate).toLocaleDateString(
+                  language === 'EN' ? 'en-US' : 'pt-BR',
+                  { year: '2-digit', month: 'short' },
+                )}
+              </div>
+              <div>
+                {exp.endDate === 'At the moment' || exp.endDate === 'Atual'
+                  ? (language === 'EN' ? 'Now' : 'Atual')
+                  : new Date(exp.endDate).toLocaleDateString(
+                      language === 'EN' ? 'en-US' : 'pt-BR',
+                      { year: '2-digit', month: 'short' },
+                    )}
+              </div>
+            </TimelineDot>
+            <TimelineContent
+              type={exp.type}
+              side={side}
+              ref={(el: HTMLDivElement | null) => (contentRefs.current[index] = el)}
+            >
+              <TimelineDate>
+                {new Date(exp.startDate).toLocaleDateString(
+                  language === 'EN' ? 'en-US' : 'pt-BR',
+                  { year: 'numeric', month: 'short' },
+                )}{' '}
+                -{' '}
+                {exp.endDate === 'At the moment' || exp.endDate === 'Atual'
+                  ? labels.present
+                  : new Date(exp.endDate).toLocaleDateString(
+                      language === 'EN' ? 'en-US' : 'pt-BR',
+                      { year: 'numeric', month: 'short' },
+                    )}
+              </TimelineDate>
+              <TimelineTitle>{exp.title}</TimelineTitle>
+              {exp.company && (
+                <TimelineCompany type={exp.type}>{exp.company}</TimelineCompany>
+              )}
+              <TimelineDescription>{exp.description}</TimelineDescription>
+            </TimelineContent>
+          </TimelineItem>
+        );
+      })}
+      {connections.map((conn, index) => (
+        <React.Fragment key={index}>
+          <ConnectionLineVertical
+            style={{
+              top: `${conn.top}px`,
+              left: `${conn.left}px`,
+              height: `${conn.height}px`,
+            }}
+          />
+          <ConnectionLineHorizontal
+            style={{
+              top: `${conn.topHorizontal.top}px`,
+              left: `${conn.topHorizontal.left}px`,
+              width: `${conn.topHorizontal.width}px`,
+            }}
+          />
+          <ConnectionLineHorizontal
+            style={{
+              top: `${conn.bottomHorizontal.top}px`,
+              left: `${conn.bottomHorizontal.left}px`,
+              width: `${conn.bottomHorizontal.width}px`,
+            }}
+          />
+          <DurationBadge
+            style={{
+              top: `${conn.top + conn.height / 2}px`,
+              left: `${conn.left}px`,
+            }}
+          >
+            {conn.duration}
+          </DurationBadge>
+        </React.Fragment>
+      ))}
+      
+      {/* Item atual na timeline */}
+      <CurrentTimelineItem>
+        <CurrentTimelineDot>
+          {language === 'EN' ? 'NOW' : 'AGORA'}
+        </CurrentTimelineDot>
+        <CurrentTimelineContent>
+          <CurrentTimelineTitle>
+            {language === 'EN' 
+              ? 'Ready for New Challenges!' 
+              : 'Pronto para Novos Desafios!'
             }
-        }
-
-        return overlaps;
-    }, [experiences]);
-
-    const formatDate = (dateString: string) => {
-        if (dateString === 'At the moment' || dateString === 'Atual') {
-            return labels.present;
-        }
-        const date = new Date(dateString);
-        return language === 'EN' 
-            ? date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
-            : date.toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' });
-    };
-
-    const formatDateRange = (startDate: string, endDate: string) => {
-        return `${formatDate(startDate)} - ${formatDate(endDate)}`;
-    };
-
-    return (
-        <div style={{
-            width: '100%',
-            maxWidth: '1000px',
-            margin: '3rem auto 2rem',
-            padding: '2rem 1rem',
-            textAlign: 'center'
-        }}>
-            <h2 style={{ 
-                color: '#8b5cf6', 
-                marginBottom: '2rem',
-                fontSize: '1.5rem',
-                fontWeight: '600'
-            }}>
-                📅 {labels.timeline}
-            </h2>
-
-            {/* Seção de Atividades Simultâneas */}
-            {overlappingPeriods.length > 0 && (
-                <div style={{
-                    background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: '16px',
-                    padding: '1.5rem',
-                    border: '2px solid rgba(139, 92, 246, 0.2)',
-                    marginBottom: '3rem',
-                    textAlign: 'left'
-                }}>
-                    <h3 style={{
-                        color: '#8b5cf6',
-                        fontSize: '1.2rem',
-                        fontWeight: '700',
-                        marginBottom: '1rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.5rem'
-                    }}>
-                        🔄 {labels.concurrent}
-                    </h3>
-                    <p style={{
-                        color: 'rgba(255, 255, 255, 0.8)',
-                        fontSize: '0.9rem',
-                        marginBottom: '1rem',
-                        lineHeight: '1.5'
-                    }}>
-                        {labels.concurrentDesc}
-                    </p>
-                    <div style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.75rem'
-                    }}>
-                        {overlappingPeriods.map((overlap, index) => (
-                            <div key={index} style={{
-                                padding: '1rem',
-                                borderRadius: '12px',
-                                background: 'rgba(15, 23, 42, 0.5)',
-                                border: '1px solid rgba(255, 255, 255, 0.1)'
-                            }}>
-                                <div style={{
-                                    fontSize: '0.8rem',
-                                    color: '#f59e0b',
-                                    fontWeight: '600',
-                                    marginBottom: '0.5rem'
-                                }}>
-                                    {formatDateRange(overlap.startDate, overlap.endDate)}
-                                </div>
-                                <div style={{
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    gap: '0.25rem'
-                                }}>
-                                    {overlap.experiences.map((exp, expIndex) => (
-                                        <div key={expIndex} style={{
-                                            fontSize: '0.85rem',
-                                            color: exp.type === 'professional' ? '#06b6d4' : '#8b5cf6',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            gap: '0.5rem'
-                                        }}>
-                                            {exp.type === 'professional' ? '🏢' : '🎓'} {exp.title} - {exp.company}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
-            
-            <div style={{
-                position: 'relative',
-                width: '100%',
-                paddingLeft: '2rem'
-            }}>
-                {/* Linha central */}
-                <div style={{
-                    position: 'absolute',
-                    left: '1rem',
-                    top: '0',
-                    bottom: '0',
-                    width: '3px',
-                    background: 'linear-gradient(180deg, #8b5cf6 0%, #06b6d4 50%, #f59e0b 100%)',
-                    borderRadius: '2px'
-                }} />
-                
-                {sortedExperiences.map((experience, index) => (
-                    <div key={index} style={{
-                        position: 'relative',
-                        marginBottom: '2rem',
-                        paddingLeft: '3rem'
-                    }}>
-                        {/* Dot */}
-                        <div style={{
-                            position: 'absolute',
-                            left: '-0.5rem',
-                            top: '1rem',
-                            width: '16px',
-                            height: '16px',
-                            borderRadius: '50%',
-                            background: experience.type === 'professional' ? '#06b6d4' : '#8b5cf6',
-                            border: '3px solid #0f172a',
-                            boxShadow: `0 0 0 3px ${experience.type === 'professional' ? 'rgba(6, 182, 212, 0.3)' : 'rgba(139, 92, 246, 0.3)'}`,
-                            zIndex: 2
-                        }} />
-                        
-                        {/* Content */}
-                        <div style={{
-                            background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.7) 100%)',
-                            backdropFilter: 'blur(10px)',
-                            borderRadius: '16px',
-                            padding: '1.5rem',
-                            border: `2px solid ${experience.type === 'professional' ? 'rgba(6, 182, 212, 0.2)' : 'rgba(139, 92, 246, 0.2)'}`,
-                            textAlign: 'left',
-                            maxWidth: '600px'
-                        }}>
-                            <div style={{
-                                fontSize: '0.8rem',
-                                color: '#8b5cf6',
-                                fontWeight: '600',
-                                marginBottom: '0.5rem',
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.5px'
-                            }}>
-                                {formatDateRange(experience.startDate, experience.endDate)}
-                            </div>
-                            
-                            <h3 style={{
-                                fontSize: '1.1rem',
-                                fontWeight: '700',
-                                color: '#ffffff',
-                                marginBottom: '0.25rem',
-                                lineHeight: '1.3'
-                            }}>
-                                {experience.title}
-                            </h3>
-                            
-                            {experience.company && (
-                                <div style={{
-                                    fontSize: '0.9rem',
-                                    color: experience.type === 'professional' ? '#06b6d4' : '#8b5cf6',
-                                    fontWeight: '600',
-                                    marginBottom: '0.75rem',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem'
-                                }}>
-                                    {experience.type === 'professional' ? '🏢' : '🎓'} {experience.company}
-                                </div>
-                            )}
-                            
-                            <p style={{
-                                fontSize: '0.85rem',
-                                color: 'rgba(255, 255, 255, 0.7)',
-                                lineHeight: '1.5',
-                                marginBottom: '0.75rem'
-                            }}>
-                                {experience.description.length > 120 
-                                    ? `${experience.description.substring(0, 120)}...`
-                                    : experience.description
-                                }
-                            </p>
-                            
-                            <div style={{
-                                display: 'inline-block',
-                                padding: '0.25rem 0.75rem',
-                                borderRadius: '12px',
-                                fontSize: '0.75rem',
-                                fontWeight: '500',
-                                background: experience.type === 'professional' 
-                                    ? 'linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(8, 145, 178, 0.1))'
-                                    : 'linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1))',
-                                border: `1px solid ${experience.type === 'professional' 
-                                    ? 'rgba(6, 182, 212, 0.3)' 
-                                    : 'rgba(139, 92, 246, 0.3)'}`,
-                                color: experience.type === 'professional' ? '#06b6d4' : '#8b5cf6'
-                            }}>
-                                {labels[experience.type]}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
+          </CurrentTimelineTitle>
+          <CurrentTimelineDescription>
+            {language === 'EN'
+              ? 'Currently exploring new opportunities and looking forward to contributing to innovative projects that make a difference. Open to discussing exciting challenges in software development.'
+              : 'Atualmente explorando novas oportunidades e ansioso para contribuir com projetos inovadores que fazem a diferença. Aberto para discutir desafios empolgantes em desenvolvimento de software.'
+            }
+          </CurrentTimelineDescription>          </CurrentTimelineContent>
+        </CurrentTimelineItem>
+      </TimelineContainer>
+    </TimelineWrapper>
+  );
 }
