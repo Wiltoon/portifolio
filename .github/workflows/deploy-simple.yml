@@ -1,8 +1,13 @@
-name: Deploy to GitHub Pages (Alternative)
+name: Deploy to GitHub Pages (Simple)
 
 on:
   push:
     branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
@@ -24,8 +29,9 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Deploy with gh-pages
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        npx gh-pages -d dist -t true
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        personal_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        force_orphan: true
