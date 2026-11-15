@@ -1,18 +1,30 @@
 import { Career } from '../../components/Career';
 import { BackToTop } from '../../components/BackToTop';
-import { useLanguage } from '../../styles/languages/LanguageProvider';
+import { useT } from '../../styles/languages/LanguageProvider';
 import { Container, Header } from './styles';
 
-export function AboutPage() {
-  const [language] = useLanguage();
+interface AboutPageProps {
+  onNavigate?: (page: string) => void;
+  focusId?: string | null;
+}
 
-  const labels = language === 'EN' ? {
+export function AboutPage({ onNavigate, focusId }: AboutPageProps) {
+    const t = useT();
+
+  const labels = t({
+        EN: {
     title: 'My Experiences',
     subtitle: 'Discover my professional and academic journey'
-  } : {
+  },
+        BR: {
     title: 'Minhas Experiências',
     subtitle: 'Conheça minha jornada profissional e acadêmica'
-  };
+  },
+        ES: {
+    title: 'Mis Experiencias',
+    subtitle: 'Conoce mi trayectoria profesional y académica'
+  }
+    });
 
   return (
     <Container>
@@ -21,7 +33,7 @@ export function AboutPage() {
         <p>{labels.subtitle}</p>
       </Header>
       
-      <Career />
+      <Career onNavigate={onNavigate} focusId={focusId} />
       
       <BackToTop />
     </Container>

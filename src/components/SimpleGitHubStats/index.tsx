@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { useLanguage } from '../../styles/languages/LanguageProvider';
+import { useT } from '../../styles/languages/LanguageProvider';
 import { 
   StatsContainer,
   StatsTitle,
@@ -17,7 +17,7 @@ export function SimpleGitHubStats() {
     following: 0
   });
   const [loading, setLoading] = useState(true);
-  const [language] = useLanguage();
+    const t = useT();
 
   useEffect(() => {
     const fetchGitHubData = async () => {
@@ -40,19 +40,29 @@ export function SimpleGitHubStats() {
     fetchGitHubData();
   }, []);
 
-  const labels = language === 'EN' ? {
+  const labels = t({
+        EN: {
     title: '📊 GitHub Stats',
     loading: '🔄 Loading GitHub data...',
     repos: 'Repositories',
     followers: 'Followers',
     following: 'Following'
-  } : {
+  },
+        BR: {
     title: '📊 Estatísticas GitHub',
     loading: '🔄 Carregando dados do GitHub...',
     repos: 'Repositórios',
     followers: 'Seguidores',
     following: 'Seguindo'
-  };
+  },
+        ES: {
+    title: '📊 Estadísticas de GitHub',
+    loading: '🔄 Cargando datos de GitHub...',
+    repos: 'Repositorios',
+    followers: 'Seguidores',
+    following: 'Siguiendo'
+  }
+    });
 
   if (loading) {
     return <LoadingCard>{labels.loading}</LoadingCard>;

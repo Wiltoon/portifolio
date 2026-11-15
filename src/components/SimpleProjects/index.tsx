@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { useLanguage } from '../../styles/languages/LanguageProvider';
+import { useLanguage, useT, localeOf } from '../../styles/languages/LanguageProvider';
 import {
     ProjectsContainer,
     HeaderPortifolio,
@@ -34,6 +34,7 @@ export function SimpleProjects() {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [language] = useLanguage();
+    const t = useT();
     
     const itemsPerPage = 6;
 
@@ -74,7 +75,7 @@ export function SimpleProjects() {
     const hasMore = displayedRepos.length < allRepos.length;
 
     const formatDate = (dateString: string) => {
-        return new Date(dateString).toLocaleDateString(language === 'EN' ? 'en-US' : 'pt-BR');
+        return new Date(dateString).toLocaleDateString(localeOf(language));
     };
 
     const getLanguageColor = (language: string | null) => {
@@ -95,7 +96,8 @@ export function SimpleProjects() {
         return languageColors[language || ''] || '#8b5cf6';
     };
 
-    const labels = language === 'EN' ? {
+    const labels = t({
+        EN: {
         title: 'My GitHub Projects',
         loading: '🔄 Loading GitHub projects...',
         noDescription: 'No description available',
@@ -103,7 +105,8 @@ export function SimpleProjects() {
         viewDemo: 'View Demo',
         loadMore: 'Load More Projects',
         showing: 'Showing'
-    } : {
+    },
+        BR: {
         title: 'Meus Projetos do GitHub',
         loading: '🔄 Carregando projetos do GitHub...',
         noDescription: 'Sem descrição disponível',
@@ -111,7 +114,17 @@ export function SimpleProjects() {
         viewDemo: 'Ver Demo',
         loadMore: 'Carregar Mais Projetos',
         showing: 'Mostrando'
-    };
+    },
+        ES: {
+        title: 'Mis Proyectos de GitHub',
+        loading: '🔄 Cargando proyectos de GitHub...',
+        noDescription: 'Sin descripción disponible',
+        viewCode: 'Ver Código',
+        viewDemo: 'Ver Demo',
+        loadMore: 'Cargar Más Proyectos',
+        showing: 'Mostrando'
+    }
+    });
 
     if (loading) {
         return (
@@ -133,7 +146,7 @@ export function SimpleProjects() {
             </HeaderPortifolio>
 
             <ProjectsInfo>
-                {labels.showing} {displayedRepos.length} {language === 'EN' ? 'of' : 'de'} {allRepos.length} projetos
+                {labels.showing} {displayedRepos.length} {t({ EN: 'of', BR: 'de', ES: 'de' })} {allRepos.length} {t({ EN: 'projects', BR: 'projetos', ES: 'proyectos' })}
             </ProjectsInfo>
 
             <Cards>
@@ -192,7 +205,7 @@ export function SimpleProjects() {
 
             {hasMore && (
                 <LoadMoreButton onClick={loadMore}>
-                    {labels.loadMore} ({allRepos.length - displayedRepos.length} {language === 'EN' ? 'remaining' : 'restantes'})
+                    {labels.loadMore} ({allRepos.length - displayedRepos.length} {t({ EN: 'remaining', BR: 'restantes', ES: 'restantes' })})
                 </LoadMoreButton>
             )}
         </ProjectsContainer>

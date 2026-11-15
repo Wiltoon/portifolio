@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { useLanguage } from '../../styles/languages/LanguageProvider';
+import { useLanguage, useT, LANGUAGES, Language } from '../../styles/languages/LanguageProvider';
 import {
   Nav,
   NavContainer,
@@ -22,6 +22,7 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [language, setLanguage] = useLanguage();
+  const t = useT();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,24 +34,19 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = language === 'EN' ? [
-    { id: 'home', label: 'Home' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'experiences', label: 'Experiences' },
-    { id: 'contact', label: 'Contact' }
-  ] : [
-    { id: 'home', label: 'Início' },
-    { id: 'projects', label: 'Projetos' },
-    { id: 'experiences', label: 'Experiências' },
-    { id: 'contact', label: 'Contato' }
+  const navItems = [
+    { id: 'home', label: t({ EN: 'Home', BR: 'Início', ES: 'Inicio' }) },
+    { id: 'projects', label: t({ EN: 'Projects', BR: 'Projetos', ES: 'Proyectos' }) },
+    { id: 'experiences', label: t({ EN: 'Experiences', BR: 'Experiências', ES: 'Experiencias' }) },
+    { id: 'contact', label: t({ EN: 'Contact', BR: 'Contato', ES: 'Contacto' }) }
   ];
 
-  const handleNavClick = (pageId: string) => {
+const handleNavClick = (pageId: string) => {
     setCurrentPage(pageId);
     setIsMobileMenuOpen(false);
   };
 
-  const changeLanguage = (selectedLanguage: string) => {
+  const changeLanguage = (selectedLanguage: Language) => {
     setLanguage(() => selectedLanguage);
   };
 
@@ -74,18 +70,15 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
         </NavLinks>
 
         <LanguageSelector>
-          <LanguageButton 
-            active={language === 'EN'} 
-            onClick={() => changeLanguage('EN')}
-          >
-            EN
-          </LanguageButton>
-          <LanguageButton 
-            active={language === 'BR'} 
-            onClick={() => changeLanguage('BR')}
-          >
-            BR
-          </LanguageButton>
+          {LANGUAGES.map((lang) => (
+            <LanguageButton
+              key={lang}
+              active={language === lang}
+              onClick={() => changeLanguage(lang)}
+            >
+              {lang}
+            </LanguageButton>
+          ))}
         </LanguageSelector>
 
         <MobileMenuButton
@@ -100,19 +93,16 @@ export function Navigation({ currentPage, setCurrentPage }: NavigationProps) {
         <MobileMenu open={isMobileMenuOpen}>
           <div style={{ padding: '1rem', borderBottom: '1px solid rgba(203, 213, 225, 0.1)' }}>
             <LanguageSelector>
-              <LanguageButton 
-                active={language === 'EN'} 
-                onClick={() => changeLanguage('EN')}
-              >
-                EN
-              </LanguageButton>
-              <LanguageButton 
-                active={language === 'BR'} 
-                onClick={() => changeLanguage('BR')}
-              >
-                BR
-              </LanguageButton>
-            </LanguageSelector>
+          {LANGUAGES.map((lang) => (
+            <LanguageButton
+              key={lang}
+              active={language === lang}
+              onClick={() => changeLanguage(lang)}
+            >
+              {lang}
+            </LanguageButton>
+          ))}
+        </LanguageSelector>
           </div>
           {navItems.map((item) => (
             <MobileNavLink
