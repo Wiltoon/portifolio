@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useT } from '../../styles/languages/LanguageProvider';
 
 import send from '../../assets/send.svg';
 import copyIcon from '../../assets/copyMail.svg';
@@ -16,6 +17,7 @@ import {
 } from "./styles";
 
 export function Contact(){
+    const t = useT();
     const emailRef = useRef<HTMLInputElement>(null);
 
     const handleCopyEmail = () => {
@@ -27,8 +29,8 @@ export function Contact(){
 
     return (
         <ContactContainer id="contact">
-            <TagContact>📬 Contact</TagContact>
-            <TitleContact>Let's work together?</TitleContact>
+            <TagContact>📬 {t({ EN: 'Contact', BR: 'Contato', ES: 'Contacto' })}</TagContact>
+            <TitleContact>{t({ EN: "Let's work together?", BR: 'Vamos trabalhar juntos?', ES: '¿Trabajamos juntos?' })}</TitleContact>
             <DatasContainer>
                 
                 <MailContainer>
@@ -39,7 +41,7 @@ export function Contact(){
             </DatasContainer>
             <a href="#home">
                 <TopBack>
-                    <TextBack>Back to top</TextBack>
+                    <TextBack>{t({ EN: 'Back to top', BR: 'Voltar ao topo', ES: 'Volver arriba' })}</TextBack>
                     <img src={topBack}/>
                 </TopBack>
             </a>

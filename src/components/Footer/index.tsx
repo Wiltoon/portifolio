@@ -6,7 +6,7 @@ import { FooterContainer, TextFooter, HomeLinks, HomeLink } from "./styles";
 export function Footer(){
     return (
         <FooterContainer>
-            <TextFooter>Copyright © Wilton Costa · 2024</TextFooter>
+            <TextFooter>Copyright © Wilton Costa · {new Date().getFullYear()}</TextFooter>
             <HomeLinks>
                     <a href="https://www.linkedin.com/in/wilton-software-engineer/" target="_blank" rel="noreferrer">
                     <HomeLink>

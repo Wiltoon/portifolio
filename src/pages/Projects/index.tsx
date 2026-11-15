@@ -1,18 +1,25 @@
 import { SimpleProjects } from '../../components/SimpleProjects';
 import { BackToTop } from '../../components/BackToTop';
-import { useLanguage } from '../../styles/languages/LanguageProvider';
+import { useT } from '../../styles/languages/LanguageProvider';
 import { Container, Header } from './styles';
 
 export function ProjectsPage() {
-  const [language] = useLanguage();
+    const t = useT();
 
-  const labels = language === 'EN' ? {
+  const labels = t({
+        EN: {
     title: 'My Projects',
     subtitle: 'A selection of projects I developed, integrating directly with GitHub'
-  } : {
+  },
+        BR: {
     title: 'Meus Projetos',
     subtitle: 'Uma seleção dos projetos que desenvolvi, integrando diretamente com o GitHub'
-  };
+  },
+        ES: {
+    title: 'Mis Proyectos',
+    subtitle: 'Una selección de los proyectos que desarrollé, integrada directamente con GitHub'
+  }
+    });
 
   return (
     <Container>

@@ -8,12 +8,11 @@ import {
     BrenButton
 } from "./styles";
 import logoFloat from '../../assets/logofloat.svg';
-import { useLanguage } from '../../styles/languages/LanguageProvider';
-import { StateUpdater } from "preact/hooks";
+import { useLanguage, Language } from '../../styles/languages/LanguageProvider';
 
 export function Header() {
     const [language, setLanguage] = useLanguage();
-    const changeLanguage = (selectedLanguage: StateUpdater<string>): void => {
+    const changeLanguage = (selectedLanguage: Language): void => {
         setLanguage(selectedLanguage);
     }
     return (
@@ -22,8 +21,8 @@ export function Header() {
                 <HeaderContent>
                     <img src={logoFloat} alt="" height={36} width={36}/>
                     <LanguageButtons>
-                        <BrenButton onClick={() => changeLanguage(() => 'EN')}>EN</BrenButton>
-                        <BrenButton onClick={() => changeLanguage(() => 'BR')}>BR</BrenButton>
+                        <BrenButton onClick={() => changeLanguage('EN')}>EN</BrenButton>
+                        <BrenButton onClick={() => changeLanguage('BR')}>BR</BrenButton>
                     </LanguageButtons>
                     <HeaderMenu>
                         {language === "EN" ? (

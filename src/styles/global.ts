@@ -12,6 +12,12 @@ export const GlobalStyle = createGlobalStyle`
         scroll-behavior: smooth;
     }
 
+    /* Decorative blurred blobs must never cause horizontal scroll. Only on <html> (it applies to the
+       viewport): overflow on <body> would make it a scroll container and break position: sticky. */
+    html {
+        overflow-x: hidden;
+    }
+
     :focus {
         outline: 0;
         box-shadow: 0 0 0 2px ${colors.primary};
@@ -22,7 +28,6 @@ export const GlobalStyle = createGlobalStyle`
         color: ${colors.text.primary};
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        overflow-x: hidden;
         min-height: 100vh;
     }
 

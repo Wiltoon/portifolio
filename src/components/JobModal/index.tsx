@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { differenceInMonths, format } from 'date-fns';
-import { useLanguage } from '../../styles/languages/LanguageProvider';
+import { parseDate } from '../../content/career';
+import { useLanguage, useT } from '../../styles/languages/LanguageProvider';
 import {
   ModalOverlay,
   ModalContent,
@@ -45,6 +46,7 @@ interface JobModalProps {
 
 export function JobModal({ isOpen, onClose, job }: JobModalProps) {
   const [language] = useLanguage();
+    const t = useT();
 
   // Fechar modal com ESC
   useEffect(() => {
@@ -65,8 +67,8 @@ export function JobModal({ isOpen, onClose, job }: JobModalProps) {
 
   if (!isOpen) return null;
 
-  const startDate = new Date(job.startDate);
-  const endDate = job.endDate === 'At the moment' ? new Date() : new Date(job.endDate);
+  const startDate = parseDate(job.startDate);
+  const endDate = job.endDate === 'At the moment' ? new Date() : parseDate(job.endDate);
   const durationInMonths = differenceInMonths(endDate, startDate);
   
   const formatDuration = () => {
@@ -77,6 +79,10 @@ export function JobModal({ isOpen, onClose, job }: JobModalProps) {
       if (years > 0 && months > 0) return `${years}y ${months}mo`;
       if (years > 0) return `${years} year${years > 1 ? 's' : ''}`;
       return `${months} month${months > 1 ? 's' : ''}`;
+    } else if (language === 'ES') {
+      if (years > 0 && months > 0) return `${years}a ${months}m`;
+      if (years > 0) return `${years} año${years > 1 ? 's' : ''}`;
+      return `${months} mes${months > 1 ? 'es' : ''}`;
     } else {
       if (years > 0 && months > 0) return `${years}a ${months}m`;
       if (years > 0) return `${years} ano${years > 1 ? 's' : ''}`;
@@ -87,13 +93,14 @@ export function JobModal({ isOpen, onClose, job }: JobModalProps) {
   const formatPeriod = () => {
     const startFormatted = format(startDate, 'MMM yyyy');
     const endFormatted = job.endDate === 'At the moment' 
-      ? (language === 'EN' ? 'Present' : 'Atual')
+      ? t({ EN: 'Present', BR: 'Atual', ES: 'Actualidad' })
       : format(endDate, 'MMM yyyy');
     
     return `${startFormatted} - ${endFormatted}`;
   };
 
-  const labels = language === 'EN' ? {
+  const labels = t({
+        EN: {
     duration: 'Duration',
     description: 'Description', 
     technologies: 'Technologies',
@@ -105,7 +112,8 @@ export function JobModal({ isOpen, onClose, job }: JobModalProps) {
     recommendations: 'Recommendations',
     viewOnLinkedIn: 'View on LinkedIn',
     company: 'Company'
-  } : {
+  },
+        BR: {
     duration: 'Duração',
     description: 'Descrição',
     technologies: 'Tecnologias', 
@@ -117,7 +125,21 @@ export function JobModal({ isOpen, onClose, job }: JobModalProps) {
     recommendations: 'Recomendações',
     viewOnLinkedIn: 'Ver no LinkedIn',
     company: 'Empresa'
-  };
+  },
+        ES: {
+    duration: 'Duración',
+    description: 'Descripción',
+    technologies: 'Tecnologías',
+    databases: 'Bases de Datos',
+    projects: 'Proyectos Principales',
+    learnings: 'Aprendizajes',
+    achievements: 'Logros',
+    responsibilities: 'Responsabilidades Principales',
+    recommendations: 'Recomendaciones',
+    viewOnLinkedIn: 'Ver en LinkedIn',
+    company: 'Empresa'
+  }
+    });
 
   const handleOverlayClick = (e: any) => {
     if (e.target === e.currentTarget) {

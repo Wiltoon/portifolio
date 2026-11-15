@@ -5,7 +5,11 @@ import { Skills } from '../../components/Skills';
 import { BackToTop } from '../../components/BackToTop';
 import { Container } from './styles';
 
-export function HomePage() {
+interface HomePageProps {
+  onNavigate: (page: string, focus?: string | null) => void;
+}
+
+export function HomePage({ onNavigate }: HomePageProps) {
   const homeRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
@@ -33,7 +37,7 @@ export function HomePage() {
   return (
     <Container>
       <section id="home" ref={homeRef}>
-        <HomeComponent />
+        <HomeComponent onNavigate={onNavigate} />
       </section>
       
       <section id="about" ref={aboutRef}>
