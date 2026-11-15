@@ -29,6 +29,7 @@ interface ScrollTimelineProps {
 /** Pixels per month on the desktop (time-proportional) layout. */
 const PX_PER_MONTH = 32;
 const TOP_PAD = 40;
+const MOBILE_ANCHOR = 0.8;
 
 /** Fractional months between two dates. */
 const monthsBetween = (from: Date, to: Date) =>
@@ -46,18 +47,24 @@ function useIsMobile() {
     return mobile;
 }
 
-/** Scroll progress (px) of the viewport anchor inside `ref`, clamped to [0, max]. */
-function useScrollProgress(ref: { current: HTMLElement | null }, max: number) {
+/**
+ * Scroll progress (px) of the viewport anchor inside `ref`, clamped to [0, getMax()].
+ * `getMax` is read on every update (not at render) so it can depend on the rendered height.
+ */
+function useScrollProgress(ref: { current: HTMLElement | null }, getMax: () => number, anchor: number, deps: unknown[]) {
     const [progress, setProgress] = useState(0);
+    const getMaxRef = useRef(getMax);
+    getMaxRef.current = getMax;
     useEffect(() => {
         let frame = 0;
         const update = () => {
             frame = 0;
             const el = ref.current;
             if (!el) return;
+            const max = getMaxRef.current();
             const top = el.getBoundingClientRect().top;
             const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
-            const raw = atBottom ? max : window.innerHeight * ANCHOR - top;
+            const raw = atBottom ? max : window.innerHeight * anchor - top;
             setProgress(Math.max(0, Math.min(max, raw)));
         };
         const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
@@ -69,7 +76,7 @@ function useScrollProgress(ref: { current: HTMLElement | null }, max: number) {
             window.removeEventListener('resize', onScroll);
             if (frame) cancelAnimationFrame(frame);
         };
-    }, [max]);
+    }, deps);
     return progress;
 }
 
@@ -108,8 +115,14 @@ export function ScrollTimeline({ onSelect, onNavigate, focusId }: ScrollTimeline
 
     const trackRef = useRef<HTMLDivElement>(null);
     const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
-    const mobileEnd = useRef(1);
-    const progress = useScrollProgress(trackRef, isMobile ? mobileEnd.current : nowY);
+    // Desktop ends at the NOW dot (from dates); mobile ends at the bottom of the rendered list.
+    const progress = useScrollProgress(
+        trackRef,
+        () => (isMobile ? trackRef.current?.offsetHeight ?? 0 : nowY),
+        // phones: reveal as cards enter the lower part of the screen, so the first one shows right away
+        isMobile ? MOBILE_ANCHOR : ANCHOR,
+        [isMobile, nowY, language],
+    );
 
     // ---------- focus an experience picked in the guide ----------
     useEffect(() => {
@@ -192,9 +205,9 @@ export function ScrollTimeline({ onSelect, onNavigate, focusId }: ScrollTimeline
 
     // ---------- mobile: one column list ----------
     if (isMobile) {
-        const centerOf = (el: HTMLElement | null) => (el ? el.offsetTop + el.offsetHeight / 2 : Infinity);
-        const trackH = trackRef.current?.offsetHeight ?? 1;
-        mobileEnd.current = trackH;
+        // reveal once the top of the card is well inside the screen
+        const centerOf = (el: HTMLElement | null) => (el ? el.offsetTop + 60 : Infinity);
+        const trackH = trackRef.current?.offsetHeight ?? Infinity;
         const activeIdx = experiences.reduce((acc, _, i) => (progress >= centerOf(rowRefs.current[i]) - 1 ? i : acc), -1);
         const done = progress >= trackH - 2;
         return (
